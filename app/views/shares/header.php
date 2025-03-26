@@ -19,7 +19,7 @@
                     <a class="nav-link" href="/KT/Product/">Danh sách sinh viên</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/KT/Product/add">Thêm sinh viên</a>
+                    <a class="nav-link" href="?action=create">Thêm sinh viên</a></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/KT/Product/">Học phần</a>

@@ -20,9 +20,9 @@ if (file_exists("C:/xampp/htdocs/KT/app/controllers/$controllerName.php")) {
     if (method_exists($controller, $action)) {
         $controller->$action();
     } else {
-        die("Lỗi: Không tìm thấy action '$action' trong controller '$controllerName'.");
+        die("");
     }
 } else {
-    die("Lỗi: Không tìm thấy controller '$controllerName'.");
+    die("");
 }
 ?>

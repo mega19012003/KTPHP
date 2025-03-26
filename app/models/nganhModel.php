@@ -7,5 +7,11 @@ class NganhHoc {
         $stmt = $conn->query("SELECT * FROM NganhHoc");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function getById($id) {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM NganhHoc WHERE MaNganh = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 ?>

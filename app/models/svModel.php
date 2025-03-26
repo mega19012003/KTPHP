@@ -10,10 +10,16 @@ class SinhVien {
 
     public static function getById($id) {
         global $conn;
-        $stmt = $conn->prepare("SELECT * FROM SinhVien WHERE MaSV = ?");
+        $stmt = $conn->prepare("
+            SELECT sv.*, nh.TenNganh 
+            FROM sinhvien sv
+            LEFT JOIN nganhhoc nh ON sv.MaNganh = nh.MaNganh
+            WHERE sv.MaSV = ?
+        ");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
 
     public static function create($data) {
         global $conn;

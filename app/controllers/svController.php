@@ -39,10 +39,12 @@ switch ($action) {
     case 'detail':
         $id = $_GET['id'];
         $sinhVien = SinhVien::getById($id);
+        // Truy vấn để lấy tên ngành học
+        $nganh = NganhHoc::getById($sinhVien['MaNganh']);
+        $sinhVien['TenNganh'] = $nganh['TenNganh'];
         include 'C:/xampp/htdocs/KT/app/views/sv/detail.php';
         break;
 
     default:
         echo "Hành động không hợp lệ";
 }
-?>
