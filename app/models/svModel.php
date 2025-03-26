@@ -23,8 +23,23 @@ class SinhVien {
 
     public static function create($data) {
         global $conn;
+
+        // Xử lý upload ảnh
+        $targetDir = "C:/xampp/htdocs/KT/app/image/";
+        $fileName = basename($_FILES["image"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath);
+    
+        // Chèn dữ liệu vào bảng SinhVien
         $stmt = $conn->prepare("INSERT INTO SinhVien (MaSV, HoTen, GioiTinh, NgaySinh, Hinh, MaNganh) VALUES (?, ?, ?, ?, ?, ?)");
-        return $stmt->execute([$data['MaSV'], $data['HoTen'], $data['GioiTinh'], $data['NgaySinh'], $data['Hinh'], $data['MaNganh']]);
+        return $stmt->execute([
+            $data['MaSV'], 
+            $data['HoTen'], 
+            $data['GioiTinh'], 
+            $data['NgaySinh'], 
+            $targetFilePath, // Lưu đường dẫn ảnh thay vì sai biến
+            $data['MaNganh']
+        ]);
     }
 
     public static function update($id, $data) {
